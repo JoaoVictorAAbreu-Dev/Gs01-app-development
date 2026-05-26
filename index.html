@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Meta Tags - Configuração da página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Space Predictive Analytics Center - Plataforma de monitoramento de missões espaciais">
+    <meta name="author" content="FIAP - Application Development">
+
+    <!-- Título da página -->
+    <title>Space Predictive Analytics Center - FIAP</title>
+
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- HEADER: Cabeçalho semântico com navegação -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <!-- Logo e título da missão -->
+            <div class="logo-section">
+                <img src="assets/logo.png" alt="SPAC logo" class="brand-logo">
+                <div class="brand-text">
+                    <h1 class="logo">SPAC</h1>
+                    <p class="tagline">Space Predictive Analytics Center</p>
+                </div>
+            </div>
+
+            <!-- Navegação e controles -->
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                    <li><a href="#sensores" class="nav-link">Sensores</a></li>
+                    <li><a href="#formulario" class="nav-link">Relatório</a></li>
+                    <li><a href="#ia-analysis" class="nav-link">Análise IA</a></li>
+                </ul>
+            </nav>
+
+            <!-- Botão de tema claro/escuro -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                <i class="bi bi-moon-stars-fill theme-icon" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Status da conexão em tempo real -->
+        <div class="connection-status" id="connectionStatus">
+            <span class="status-dot"></span>
+            <span class="status-text">Conectado</span>
+        </div>
+    </header>
+
+    <!-- MAIN: Conteúdo principal da página -->
+    <main class="main-content">
+
+        <!-- SECTION: Dashboard de Monitoramento -->
+        <section class="dashboard" id="dashboard">
+            <div class="section-header">
+                <h2 class="section-title"><i class="bi bi-graph-up-arrow section-icon" aria-hidden="true"></i> Dashboard de Monitoramento</h2>
+                <p class="section-subtitle">Dados em tempo real da missão espacial</p>
+            </div>
+
+            <!-- Contêiner do grid de métricas -->
+            <div class="metrics-grid">
+
+                <!-- ARTICLE: Card de Temperatura -->
+                <article class="metric-card" id="tempCard">
+                    <div class="metric-header">
+                        <h3 class="metric-title"><i class="bi bi-thermometer-half" aria-hidden="true"></i> Temperatura</h3>
+                        <span class="metric-unit">°C</span>
+                    </div>
+                    <div class="metric-value" id="tempValue">--</div>
+                    <div class="metric-bar">
+                        <div class="metric-progress" id="tempProgress"></div>
+                    </div>
+                    <p class="metric-status" id="tempStatus">Aguardando dados...</p>
+                </article>
+
+                <!-- ARTICLE: Card de Energia -->
+                <article class="metric-card" id="energyCard">
+                    <div class="metric-header">
+                        <h3 class="metric-title"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i> Energia</h3>
+                        <span class="metric-unit">%</span>
+                    </div>
+                    <div class="metric-value" id="energyValue">--</div>
+                    <div class="metric-bar">
+                        <div class="metric-progress" id="energyProgress"></div>
+                    </div>
+                    <p class="metric-status" id="energyStatus">Aguardando dados...</p>
+                </article>
+
+                <!-- ARTICLE: Card de Comunicação -->
+                <article class="metric-card" id="commCard">
+                    <div class="metric-header">
+                        <h3 class="metric-title"><i class="bi bi-broadcast-pin" aria-hidden="true"></i> Comunicação</h3>
+                        <span class="metric-unit">Mbps</span>
+                    </div>
+                    <div class="metric-value" id="commValue">--</div>
+                    <div class="metric-bar">
+                        <div class="metric-progress" id="commProgress"></div>
+                    </div>
+                    <p class="metric-status" id="commStatus">Aguardando dados...</p>
+                </article>
+
+                <!-- ARTICLE: Card de Status Operacional -->
+                <article class="metric-card" id="statusCard">
+                    <div class="metric-header">
+                        <h3 class="metric-title"><i class="bi bi-shield-check" aria-hidden="true"></i> Status Operacional</h3>
+                        <span class="metric-unit">%</span>
+                    </div>
+                    <div class="metric-value" id="statusValue">--</div>
+                    <div class="metric-bar">
+                        <div class="metric-progress" id="statusProgress"></div>
+                    </div>
+                    <p class="metric-status" id="statusStatus">Aguardando dados...</p>
+                </article>
+            </div>
+
+            <!-- Informações adicionais -->
+            <div class="dashboard-info">
+                <p class="last-update" id="lastUpdate">Última atualização: --:--:--</p>
+                <button class="btn btn-primary" id="refreshBtn"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> Atualizar Dados</button>
+            </div>
+        </section>
+
+        <!-- SECTION: Sensores e Detalhes Técnicos -->
+        <section class="sensors-section" id="sensores">
+            <div class="section-header">
+                <h2 class="section-title"><i class="bi bi-cpu" aria-hidden="true"></i> Status dos Sensores</h2>
+                <p class="section-subtitle">Monitoramento detalhado de todos os sensores instalados</p>
+            </div>
+
+            <div class="sensors-container">
+                <!-- Sensores principais -->
+                <div class="sensors-grid">
+                    <!-- ARTICLE: Sensor 1 -->
+                    <article class="sensor-item">
+                        <h4 class="sensor-name">Sensor de Temperatura Externo</h4>
+                        <div class="sensor-status active">Ativo</div>
+                        <p class="sensor-value">Leitura: <strong id="sensor1">-50°C</strong></p>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="sensorBar1"></div>
+                        </div>
+                    </article>
+
+                    <!-- ARTICLE: Sensor 2 -->
+                    <article class="sensor-item">
+                        <h4 class="sensor-name">Sensor de Pressão Estrutural</h4>
+                        <div class="sensor-status active">Ativo</div>
+                        <p class="sensor-value">Leitura: <strong id="sensor2">45 PSI</strong></p>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="sensorBar2"></div>
+                        </div>
+                    </article>
+
+                    <!-- ARTICLE: Sensor 3 -->
+                    <article class="sensor-item">
+                        <h4 class="sensor-name">Sensor de Radiação</h4>
+                        <div class="sensor-status active">Ativo</div>
+                        <p class="sensor-value">Leitura: <strong id="sensor3">0.8 Sv/h</strong></p>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="sensorBar3"></div>
+                        </div>
+                    </article>
+
+                    <!-- ARTICLE: Sensor 4 -->
+                    <article class="sensor-item">
+                        <h4 class="sensor-name">Sensor de Umidade Interna</h4>
+                        <div class="sensor-status active">Ativo</div>
+                        <p class="sensor-value">Leitura: <strong id="sensor4">35%</strong></p>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="sensorBar4"></div>
+                        </div>
+                    </article>
+
+                    <!-- ARTICLE: Sensor 5 -->
+                    <article class="sensor-item">
+                        <h4 class="sensor-name">Sensor de Vibração</h4>
+                        <div class="sensor-status active">Ativo</div>
+                        <p class="sensor-value">Leitura: <strong id="sensor5">2.1 Hz</strong></p>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="sensorBar5"></div>
+                        </div>
+                    </article>
+
+                    <!-- ARTICLE: Sensor 6 -->
+                    <article class="sensor-item">
+                        <h4 class="sensor-name">Sensor de Velocidade Solar</h4>
+                        <div class="sensor-status active">Ativo</div>
+                        <p class="sensor-value">Leitura: <strong id="sensor6">450 km/s</strong></p>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="sensorBar6"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contêiner com layout de dois colunas: Formulário + Análise IA -->
+        <div class="content-wrapper">
+
+            <!-- SECTION: Formulário de Relatório -->
+            <section class="form-section" id="formulario">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="bi bi-journal-text" aria-hidden="true"></i> Registrar Relatório Técnico</h2>
+                    <p class="section-subtitle">Envie observações sobre a missão</p>
+                </div>
+
+                <!-- FORM: Formulário semântico com validação -->
+                <form class="report-form" id="reportForm" method="POST">
+
+                    <!-- Campo: Identificação -->
+                    <div class="form-group">
+                        <label for="engineerName" class="form-label">Nome do Engenheiro *</label>
+                        <input
+                            type="text"
+                            id="engineerName"
+                            name="engineerName"
+                            class="form-input"
+                            placeholder="Digite seu nome completo"
+                            required
+                        >
+                    </div>
+
+                    <!-- Campo: Email -->
+                    <div class="form-group">
+                        <label for="engineerEmail" class="form-label">Email *</label>
+                        <input
+                            type="email"
+                            id="engineerEmail"
+                            name="engineerEmail"
+                            class="form-input"
+                            placeholder="seu.email@example.com"
+                            required
+                        >
+                    </div>
+
+                    <!-- Campo: Tipo de Relatório -->
+                    <div class="form-group">
+                        <label for="reportType" class="form-label">Tipo de Relatório *</label>
+                        <select id="reportType" name="reportType" class="form-select" required>
+                            <option value="">-- Selecione uma opção --</option>
+                            <option value="anomalia">Detecção de Anomalia</option>
+                            <option value="manutencao">Manutenção Preventiva</option>
+                            <option value="performance">Otimização de Performance</option>
+                            <option value="seguranca">Questão de Segurança</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <!-- Campo: Prioridade -->
+                    <div class="form-group">
+                        <label for="priority" class="form-label">Prioridade *</label>
+                        <select id="priority" name="priority" class="form-select" required>
+                            <option value="">-- Selecione uma opção --</option>
+                            <option value="baixa">Baixa</option>
+                            <option value="media">Média</option>
+                            <option value="alta">Alta</option>
+                            <option value="critica">Crítica</option>
+                        </select>
+                    </div>
+
+                    <!-- Campo: Descrição -->
+                    <div class="form-group">
+                        <label for="description" class="form-label">Descrição Detalhada *</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            class="form-textarea"
+                            rows="6"
+                            placeholder="Descreva detalhadamente o problema ou observação..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <!-- Campo: Recomendação -->
+                    <div class="form-group">
+                        <label for="recommendation" class="form-label">Recomendação de Ação</label>
+                        <textarea
+                            id="recommendation"
+                            name="recommendation"
+                            class="form-textarea"
+                            rows="4"
+                            placeholder="Descreva as ações recomendadas..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Botões de ação -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn"><i class="bi bi-send-check" aria-hidden="true"></i> Enviar Relatório</button>
+                        <button type="reset" class="btn btn-secondary" id="resetBtn"><i class="bi bi-eraser" aria-hidden="true"></i> Limpar Formulário</button>
+                    </div>
+
+                    <!-- Mensagem de feedback -->
+                    <div class="form-message" id="formMessage" style="display: none;"></div>
+                </form>
+            </section>
+
+            <!-- ASIDE: Painel lateral com análise de IA -->
+            <aside class="aside-panel" id="ia-analysis">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="bi bi-robot" aria-hidden="true"></i> Análise Inteligente (IA)</h2>
+                    <p class="section-subtitle">Simulação de análise preditiva</p>
+                </div>
+
+                <!-- Container para resultados da IA -->
+                <div class="ia-container">
+
+                    <!-- Status da análise -->
+                    <div class="ia-status">
+                        <h3>Status da Análise</h3>
+                        <p id="iaStatus">Pronto para análise</p>
+                    </div>
+
+                    <!-- Recomendações da IA -->
+                    <div class="ia-recommendations">
+                        <h3>Recomendações do Sistema</h3>
+                        <div class="recommendations-list" id="recommendationsList">
+                            <div class="recommendation-item">
+                                <span class="rec-icon"><i class="bi bi-lightbulb" aria-hidden="true"></i></span>
+                                <p>Clique em "Analisar com IA" para gerar recomendações</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Métricas de confiança -->
+                    <div class="ia-metrics">
+                        <h3>Confiança da Análise</h3>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceFill" style="width: 0%"></div>
+                        </div>
+                        <p class="confidence-text" id="confidenceText">0%</p>
+                    </div>
+
+                    <!-- Botão para executar análise -->
+                    <button class="btn btn-primary" id="analyzeBtn" style="width: 100%; margin-top: 20px;">
+                        <i class="bi bi-cpu-fill" aria-hidden="true"></i> Analisar com IA
+                    </button>
+                </div>
+            </aside>
+        </div>
+
+    </main>
+
+    <!-- FOOTER: Rodapé semântico com informações finais -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <!-- Informações da instituição -->
+            <div class="footer-section">
+                <h3>FIAP - Application Development</h3>
+                <p>Projeto Acadêmico: Space Predictive Analytics Center</p>
+                <p>Disciplina: Application Development</p>
+            </div>
+
+            <!-- Tecnologias utilizadas -->
+            <div class="footer-section">
+                <h3>Tecnologias</h3>
+                <ul>
+                    <li>HTML5 Semântico</li>
+                    <li>CSS3 com Flexbox</li>
+                    <li>JavaScript Vanilla</li>
+                    <li>Design Responsivo</li>
+                </ul>
+            </div>
+
+            <!-- Links úteis -->
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#sensores">Sensores</a></li>
+                    <li><a href="#formulario">Relatório</a></li>
+                    <li><a href="#ia-analysis">Análise IA</a></li>
+                </ul>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-section">
+                <p class="copyright">&copy; 2024-2025 Space Predictive Analytics Center</p>
+                <p class="footer-text">Desenvolvido para fins educacionais</p>
+            </div>
+        </div>
+
+        <!-- Linha separadora -->
+        <div class="footer-divider"></div>
+
+        <!-- Informações de rodapé -->
+        <div class="footer-bottom">
+            <p>Última atualização: <span id="footerDate">--/--/----</span> às <span id="footerTime">--:--:--</span></p>
+        </div>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+

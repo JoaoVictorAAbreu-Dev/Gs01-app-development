@@ -86,9 +86,15 @@ As métricas são geradas dinamicamente por intervalos predefinidos no arquivo `
 - Testes automatizados de interface e regras de validação.
 - Pipeline CI para validação contínua de qualidade.
 
-## 11. Integrantes
+## 11. Vídeo de Demonstração
+
+🎥 Assista ao vídeo de apresentação do projeto:
+
+[Ver vídeo no YouTube](https://youtu.be/zVY7RyqIEHI?si=00_6nIrkODvlfrva)
+
+## 12. Integrantes
 - João Victor Alves de Abreu - RM: 564946
 - Luiz Henrique Barbosa Dias - RM: 562399
 
-## 12. Licença e Uso
+## 13. Licença e Uso
 Projeto de caráter acadêmico, destinado a estudo, demonstração técnica e avaliação educacional.
